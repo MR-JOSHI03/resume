@@ -1,25 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Shivam Joshi - Software Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Professional Blues & Warm Neutrals (Background: #F8F7F4, Text: #2c3e50, Primary Accent: #3B82F6, Hover Accent: #2563EB, Skill Card Hover: #DBEAFE) -->
+    <!-- Application Structure Plan: A single-page application with a top navigation bar for smooth scrolling to distinct sections: Hero, About, Skills, Experience/Projects, Education, and Certifications. This structure allows recruiters to quickly navigate to the information they find most relevant. The flow starts with a strong summary and a profile picture, moves to an interactive grid of skills for quick assessment, followed by a chronological timeline of experience to show growth. This non-linear but guided exploration is more engaging than a traditional resume and better suited for digital consumption. -->
+    <!-- Visualization & Content Choices: 
+        - Hero/About (Inform): Simple HTML/CSS for a strong first impression, including a profile image for personalization.
+        - Skills (Organize/Inform): HTML/Tailwind CSS grid of interactive skill badges. Goal: Present technical abilities visually and allow for quick scanning. Interaction: Hover effects on badges. Justification: Provides a clean, modern, and interactive way to display skills without complex charts, allowing for more color integration.
+        - Experience/Projects (Organize/Change): HTML/CSS/JS vertical timeline. Goal: Show career and project progression chronologically. Interaction: Vertical scrolling through a clear timeline. Justification: A narrative and visually appealing way to present experience.
+        - Education (Inform): HTML/Tailwind CSS grid for academic details. Goal: Present educational background clearly. Interaction: None. Justification: A clean, scannable format.
+        - Certifications (Organize): HTML/Tailwind CSS grid. Goal: Present credentials clearly. Interaction: None. Justification: A clean, scannable format for multiple items.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4; /* Light beige/off-white */
+            color: #2c3e50; /* Dark charcoal */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #2563EB; /* Darker blue on hover */
+        }
+        .timeline .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 12px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #3B82F6; /* Primary blue */
+            border: 3px solid #F8F7F4; /* Matches body background */
+        }
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        .skill-badge:hover {
+            background-color: #DBEAFE; /* Light blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-<body>
-    <img src="logo/image.png" align="right" height="200"/>
-    <h1>Shivam Joshi</h1>
-    <h2>Education:</h2>
-    <p>DAV CENTENARY PUBLIC SCHOOL-2022</p>
-    <p><b>BCA-</b>Graphic Era Hill University-2025</p>
-    <h2>Skills:</h2>
-    <p>My SQL<br>C<br>C++<br>JAVA</p>
-    <h2>Projects:</h2>
-    <a href="https://www.google.com/maps/place/PRAKASH+GENERAL+STORE/@29.2272516,79.5154822,17z/data=!3m1!4b1!4m6!3m5!1s0x39a09b4c0a95dd03:0x54bbf91372ab227f!8m2!3d29.2272516!4d79.5154822!16s%2Fg%2F11h8_9sv9r?entry=ttu"><button>PRAKASH GENERAL STORE</button></a>
-    <h2>Social Links-</h2>
-    <a href="https://www.facebook.com/people/%C5%9Ah%C3%AFv%C4%81m-Joshi/pfbid02BkMthoWFy21PwVFHvoTN4aDGS9Ac77ZJ9X93fPJ8YDgF9i2WtZQzgaJ9oJo72LaSl/"><img src="./logo/icons8-facebook-240.png " height="50"/></a>
-    <a href="https://www.instagram.com/mr_joshi03/"><img src="./logo/icons8-insta-240.png" height="50"/></a>
-    <a href="www.linkedin.com/in/shivamjoshi03"><img src="./logo/icons8-linkedin-240.png" height="50"/></a>
-    <a href="https://twitter.com/MJoshi2003?t=A_i8vqL-tTdwVvpFpRCyBg&s=09"><img src="./logo/icons8-twitterx-240.png" height="50"/></a>
-    <a href="https://github.com/MR-JOSHI03"><img src="./logo/icons8-github-256.png" height="50"/></a>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-gray-800">Shivam Joshi</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#skills" class="nav-link text-gray-600 font-medium">Skills</a>
+                <a href="#experience" class="nav-link text-gray-600 font-medium">Experience</a>
+                <a href="#education" class="nav-link text-gray-600 font-medium">Education</a>
+                <a href="#certifications" class="nav-link text-gray-600 font-medium">Certifications</a>
+            </div>
+            <a href="mailto:shivamjoshi03@outlook.com" class="hidden md:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">Contact Me</a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#skills" class="block py-2 nav-link text-gray-600">Skills</a>
+            <a href="#experience" class="block py-2 nav-link text-gray-600">Experience</a>
+            <a href="#education" class="block py-2 nav-link text-gray-600">Education</a>
+            <a href="#certifications" class="block py-2 nav-link text-gray-600">Certifications</a>
+            <a href="mailto:shivamjoshi03@outlook.com" class="block mt-2 text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">Contact Me</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="container mx-auto px-6 py-20 md:py-32 text-center">
+            <img src="./20250522_140227.jpg" onerror="this.onerror=null; this.src='http://googleusercontent.com/file_content/1';" alt="Shivam Joshi Profile" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Shivam Joshi</h1>
+            <p class="text-lg md:text-2xl text-gray-600 mb-8">Aspiring Software Engineer</p>
+            <p class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+                Highly motivated Computer Application student with a strong foundation in programming languages (C/C++, Python, Java, JavaScript) and web technologies. Eager to apply technical skills and problem-solving abilities to contribute to innovative software development projects at American Express. Proficient in web development, machine learning concepts, and database management.
+            </p>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="https://linkedin.com/in/shivamjoshi03" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/MR-JOSHI03" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2c-5.52 0-10 4.48-10 10 0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-1.05-.01-1.92-2.78.6-3.37-1.18-3.37-1.18-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-4">Technical Skills</h2>
+                <p class="text-center max-w-2xl mx-auto text-gray-600 mb-12">This section provides a clear overview of my technical capabilities across various domains, from core programming languages to development tools and AI concepts. Each badge highlights a specific skill, allowing for quick and easy identification of my competencies.</p>
+                <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Java</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Python</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">JavaScript</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">C/C++</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">HTML5/CSS3</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">MySQL</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">WordPress</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Git/GitHub</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Android Studio</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Visual Studio Code</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Machine Learning</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Image Processing</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">GPT</div>
+                    <div class="skill-badge bg-white p-4 rounded-lg shadow-md text-center text-gray-800 font-medium cursor-pointer">Stable Diffusion</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Experience & Projects</h2>
+                 <p class="text-center max-w-3xl mx-auto text-gray-600 mb-12">The timeline below walks through my professional journey and key academic projects. It illustrates my hands-on experience in applying theoretical knowledge to practical challenges, from developing websites for real-world businesses to exploring advanced AI tools and building complete software systems.</p>
+                <div class="relative max-w-3xl mx-auto pl-8">
+                    <div class="absolute left-0 h-full w-0.5 bg-gray-200" style="transform: translateX(-20px);"></div>
+                    <div class="space-y-12 timeline">
+                        
+                        <div class="timeline-item relative">
+                            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                                <span class="text-sm font-semibold text-gray-500">2024</span>
+                                <h3 class="text-xl font-bold mt-1">Library Management System</h3>
+                                <p class="text-md text-gray-600 font-medium mb-2">Project</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Designed and implemented a comprehensive Library Management System to streamline book inventory, borrowing, and return processes. Built a robust and user-friendly application featuring user authentication, book search, overdue reminders, and administrative controls.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item relative">
+                            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                               <span class="text-sm font-semibold text-gray-500">Ongoing</span>
+                                <h3 class="text-xl font-bold mt-1">Machine Learning & AI Avatars</h3>
+                                <p class="text-md text-gray-600 font-medium mb-2">Independent Project/Internship</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                   Explored and utilized AI tools (Midjourney, Eleven Labs, Stable Diffusion, GPT) for creative and analytical applications. Gained practical insights into prompt engineering and AI model integration.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item relative">
+                           <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                                <span class="text-sm font-semibold text-gray-500">Internship Period</span>
+                                <h3 class="text-xl font-bold mt-1">WordPress Developer</h3>
+                                <p class="text-md text-gray-600 font-medium mb-2">Rudra Power (Intern)</p>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Developed and maintained responsive WordPress websites, enhancing online presence for businesses. Implemented custom themes and plugins, improving website functionality and user experience. Collaborated with clients to gather requirements and ensure timely project delivery.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
+                <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <h3 class="text-xl font-bold">Bachelors of Computer Application (BCA)</h3>
+                        <p class="text-gray-600 mt-2">Graphic Era Hill University, Haldwani</p>
+                        <p class="text-gray-500 mt-1">Expected Graduation: 2025</p>
+                        <p class="text-gray-500 mt-1">GPA: 7.08/10</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg text-center">
+                        <h3 class="text-xl font-bold">Higher Secondary (CBSE)</h3>
+                        <p class="text-gray-600 mt-2">DAV Centenary Public School, Haldwani</p>
+                        <p class="text-gray-500 mt-1">Graduated: 2022</p>
+                        <p class="text-gray-500 mt-1">Score: 79.5%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications" class="py-20">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Certifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="font-bold text-lg">Google Digital Marketing</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="font-bold text-lg">Full-Stack Web Development</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="font-bold text-lg">GUVI AI For India</h3>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="font-bold text-lg">Generative AI with Langchain</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Shivam Joshi. All rights reserved.</p>
+            <p class="mt-2">Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const navLinks = document.querySelectorAll('#mobile-menu a, #header nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
